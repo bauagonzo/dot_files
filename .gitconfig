@@ -1,0 +1,27 @@
+[user]
+    name = baua.gonzo
+    email = baua.gonzo@gmail.com
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = true
+[credential]
+    helper = osxkeychain
+
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
+    pop = stash pop
+    mergelast2 = rebase --interactive HEAD~2
+
+[svn]
+    rmdir
+    findcopiesharder = true
+
+[core]
+    editor = /usr/bin/vim
+    autocrlf = input
+
+[diff]
+    renames = copies

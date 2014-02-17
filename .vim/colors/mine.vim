@@ -28,13 +28,13 @@ let g:colors_name = "vibrantink"
 
     set t_Co=256
     "highlight Normal ctermfg=White ctermbg=Black 
-    highlight Cursor ctermfg=Black ctermbg=Yellow 
+    highlight Cursor ctermfg=Black ctermbg=Yellow
     highlight Keyword ctermfg=202 
     highlight Define ctermfg=202 
     highlight Comment ctermfg=98
     highlight Type ctermfg=White 
     highlight rubySymbol ctermfg=66 
-    highlight Identifier ctermfg=White 
+    highlight Identifier ctermfg=White
     highlight rubyStringDelimiter ctermfg=82 
     highlight rubyInterpolation ctermfg=White 
     highlight rubyPseudoVariable ctermfg=66 
@@ -42,6 +42,8 @@ let g:colors_name = "vibrantink"
     highlight Function ctermfg=220 
     highlight Include ctermfg=220 
     highlight Statement ctermfg=202
-    highlight String ctermfg=82 
-    highlight Search ctermbg=White 
+    highlight String ctermfg=82
+    highlight Search ctermbg=White
     highlight CursorLine cterm=NONE ctermbg=235
+    highlight NonText ctermfg=Grey
+    highlight SpecialKey ctermfg=Grey

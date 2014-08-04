@@ -48,6 +48,7 @@ unsetopt correct correctall
 setopt combining_chars
 
 alias l='ls -l'
+alias o=open
 alias vi=vim
 alias seed='ftp Bauagonzo82@front134.sdbx.co'
 alias dhcprenew='echo "add State:/Network/Interface/en0/RefreshConfiguration temporary" | sudo scutil'
@@ -59,6 +60,10 @@ alias rmds='find . -name '.DS_Store' -type f -delete'
 alias pr='post-review --target-people=vallem5 --target-groups=phoenix --guess-summary --guess-description --parent=HEAD^'
 
 alias whattimewasitindublin5hoursago='TZ=Europe/Dublin date -v -5H'
+
+if [[  $OSTYPE == 'linux-gnu' ]]; then
+  alias psc='ps xawf -eo pid,user,cgroup,args'
+fi
 
 eval "$(rbenv init -)"
 RBENV_VERSION="2.0.0-p0"

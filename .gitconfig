@@ -1,27 +1,35 @@
 [user]
-    name = baua.gonzo
-    email = baua.gonzo@gmail.com
+  name = baua.gonzo
+  email = baua.gonzo@gmail.com
 
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = true
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = true
 [credential]
-    helper = osxkeychain
+  helper = osxkeychain
 
 [alias]
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
-    pop = stash pop
-    mergelast2 = rebase --interactive HEAD~2
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
+  pop = stash pop
+  mergelast2 = rebase --interactive HEAD~2
+  mergelast = !git rebase --interactive HEAD~${1}
+  wget =  !sh -c 'git archive --format=tar --remote=$1 HEAD | tar xf -' -
 
 [svn]
-    rmdir
-    findcopiesharder = true
+  rmdir
+  findcopiesharder = true
 
 [core]
-    editor = /usr/bin/vim
-    autocrlf = input
-
+  editor = /usr/bin/vim
+  autocrlf = input
+  eol = lf
+  preloadindex = true
 [diff]
-    renames = copies
+  renames = copies
+  tool = opendiff
+[log]
+  date = local
+[merge]
+  tool = opendiff

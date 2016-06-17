@@ -29,6 +29,7 @@
 [diff]
   renames = copies
   tool = opendiff
+  compactionheuristic = true
 [log]
   date = local
 [merge]

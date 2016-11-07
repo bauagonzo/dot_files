@@ -1,20 +1,28 @@
+"profile start profile.log
+"profile func *
+"profile file *
+" At this point do slow actions
+" :profile pause
+" :noautocmd qall!
+
 syntax on
-"set background=dark
+set background=dark
 "set bg&
 set ignorecase
 set smartcase
 set incsearch
-autocmd BufNewFile,BufRead *.xml.ftl set syntax=xml
+autocmd BufNewFile,BufRead *.ftl set syntax=xml
 
-colors mine "vibrantink
+colors vividchalk
+"mine "vibrantink
 
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 set backspace=indent,eol,start
 
+let did_load_ftplugin = 1
 filetype plugin indent on
-
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " set list

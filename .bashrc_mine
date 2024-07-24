@@ -1,0 +1,74 @@
+export EDITOR=vi
+export GOPATH=$HOME/go
+
+# PS1 customization
+#source ~/go/src/github.com/jonmosco/kube-ps1/kube-ps1.sh
+#source ~/.git-prompt.sh
+## Patch from https://lore.kernel.org/git/pull.1433.git.git.1673632438204.gitgitgadget@gmail.com/T/
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_UNTRACKED_SYMBOL=
+GIT_PS1_STAGED_SYMBOL=
+GIT_PS1_UNSTAGED_SYMBOL=󰏫
+GIT_PS1_STASH_SYMBOL=󰜦
+#
+#KUBE_PS1_SYMBOL_ENABLE=false
+#PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(kube_ps1)$(__git_ps1 " (%s)")\$ '
+#GIT_PROMPT_ONLY_IN_REPO=1
+
+#kubeoff -g
+
+eval "$(/home/coulof/bin/oh-my-posh init bash  --config /home/coulof/.cache/oh-my-posh/themes/mine.omp.json)"
+
+alias kubeoff='eval "$(/home/coulof/bin/oh-my-posh init bash  --config /home/coulof/.cache/oh-my-posh/themes/mine.omp.json)"'
+alias kubeon='eval "$(/home/coulof/bin/oh-my-posh init bash  --config /home/coulof/.cache/oh-my-posh/themes/mine-kubectl.omp.json)"'
+
+
+# Keys
+if [ -z "$(pgrep ssh-agent)" ]; then
+  eval "$(ssh-agent -s)"
+fi
+ssh-add ~/.ssh/id_rsa.ciq
+ssh-add ~/.ssh/id_ed25519.coulof.gh
+ssh-add ~/.ssh/id_rsa.gitlab
+
+if [ -z "$(pgrep gpg-agent)" ]; then
+  eval $(gpg-agent --daemon)
+fi
+
+export GPG_TTY=$(tty)
+
+# Kubernetes stuff
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.krew/bin:$PATH"
+
+source <(kubectl completion bash)
+source <(oc completion bash)
+source <(stern --completion bash)
+source <(helm completion bash)
+# Other tools
+# . /usr/share/autojump/autojump.sh
+eval "$(zoxide init bash)"
+alias cd=z
+
+# completions
+source /usr/share/bash-completion/completions/fzf
+source ~/.config/cheat/cheat.bash
+
+
+# history
+# Overwrite when storing
+shopt -u histappend
+
+# Infinite session history
+HISTSIZE=-1
+
+# Infinite history file
+HISTFILESIZE=-1
+
+# Don't store commands that aren't useful in history
+HISTIGNORE='exit:history:l:l[1als]:lla:+(.)'
+
+# Ignore commands starting with space, and duplicates
+HISTCONTROL='ignoreboth'

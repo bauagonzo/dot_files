@@ -32,6 +32,7 @@ if [ -z "$(pgrep ssh-agent)" ]; then
 fi
 ssh-add ~/.ssh/id_rsa.ciq
 ssh-add ~/.ssh/id_ed25519.coulof.gh
+ssh-add ~/.ssh/id_ed25519.gh.bg
 ssh-add ~/.ssh/id_rsa.gitlab
 
 if [ -z "$(pgrep gpg-agent)" ]; then
@@ -44,18 +45,26 @@ export GPG_TTY=$(tty)
 export PATH="$HOME/bin:$GOPATH/bin:$HOME/.krew/bin:$PATH"
 
 source <(kubectl completion bash)
+source <(openshift-install completion bash)
 source <(oc completion bash)
 source <(stern --completion bash)
 source <(helm completion bash)
+source <(kubectl pv-migrate completion bash)
+source <(kubectl virt completion bash)
+source <(trivy completion bash)
+source <(kind completion bash)
+source <(task --completion bash)
 # Other tools
 # . /usr/share/autojump/autojump.sh
 eval "$(zoxide init bash)"
 alias cd=z
 
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
+
 # completions
 source /usr/share/bash-completion/completions/fzf
 source ~/.config/cheat/cheat.bash
-
 
 # history
 # Overwrite when storing
@@ -72,3 +81,7 @@ HISTIGNORE='exit:history:l:l[1als]:lla:+(.)'
 
 # Ignore commands starting with space, and duplicates
 HISTCONTROL='ignoreboth'
+
+
+eval "$(rbenv init -)"
+eval "$(ruby ~/bin/try init ~/src/tries)"

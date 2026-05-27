@@ -2,35 +2,79 @@
   name = baua.gonzo
   email = baua.gonzo@gmail.com
 
+[init]
+  defaultBranch = main
+
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = true
-[credential]
-  helper = osxkeychain
-
-[alias]
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
-  pop = stash pop
-  mergelast2 = rebase --interactive HEAD~2
-  mergelast = !git rebase --interactive HEAD~${1}
-  wget =  !sh -c 'git archive --format=tar --remote=$1 HEAD | tar xf -' -
-
-[svn]
-  rmdir
-  findcopiesharder = true
+  ui = auto
 
 [core]
-  editor = /usr/bin/vim
+  editor = vim
   autocrlf = input
   eol = lf
   preloadindex = true
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+  # side-by-side = true   # uncomment for two-column; needs a wide terminal
+
 [diff]
   renames = copies
-  tool = opendiff
-  compactionheuristic = true
+  colorMoved = default
+
+[merge]
+  conflictstyle = zdiff3
+
+[pull]
+  ff = only
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[rebase]
+  autostash = true
+
 [log]
   date = local
-[merge]
-  tool = opendiff
+
+[alias]
+  # --- log / status ---
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
+  s  = status -sb
+  last = log -1 HEAD --stat
+
+  # --- navigation ---
+  co = checkout
+  br = branch
+
+  # --- commit ---
+  cm = commit -m
+  amend = commit --amend --no-edit
+
+  # --- undo ---
+  uncommit = reset --soft HEAD~1
+  unstage  = restore --staged
+
+  # --- stash / rebase ---
+  pop = stash pop
+  mergelast = "!f() { git rebase --interactive HEAD~${1:-2}; }; f"
+  cont = "!git rebase --continue"
+
+  # --- identity guard (which author am I committing as?) ---
+  whoami = "!git config user.name && git config user.email"
+
+# --- macOS-only settings ---
+# Kept out of the main body so this file stays portable to Linux.
+# On the M5, your setup script should symlink ~/.gitconfig-macos and
+# add this include. On Linux, the file simply won't exist and the
+# include is silently skipped.
+[include]
+  path = ~/.gitconfig-macos
